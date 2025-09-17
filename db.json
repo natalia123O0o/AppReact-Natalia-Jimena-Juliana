@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "juliana",
+      "password": "juliana123",
+      "name": "Juliana"
+    },
+    {
+      "id": 2,
+      "username": "jimena", 
+      "password": "jimena123",
+      "name": "Jimena"
+    },
+    {
+      "id": 3,
+      "username": "natalia",
+      "password": "natalia123",
+      "name": "Natalia"
+    }
+  ],
+  "tasks": []
+}
