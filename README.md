@@ -1,7 +1,7 @@
 # Task Manager App
 
 Stack: React + Vite + TailwindCSS + JSON-Server + LocalStorage  
-Equipo: Ana, Luis, María (cambia por los nombres reales)
+Equipo: Natalia, Juliana, Jimena (cambia por los nombres reales)
 
 ## Scripts
 - `npm run dev` – levanta el front en http://localhost:5173  
@@ -12,7 +12,17 @@ Equipo: Ana, Luis, María (cambia por los nombres reales)
 - `npm run lint` – ESLint  
 
 ## Estructura de carpetas
-(src/… explicar brevemente)
+src/
+├── assets/          → imágenes, fuentes, íconos estáticos
+├── components/      → piezas de UI reusables, agrupadas por dominio
+│   ├── auth/        → Login.jsx, Register.jsx (solo presentación)
+│   ├── layout/      → Header.jsx, Footer.jsx, Layout.jsx (shell de la app)
+│   └── tasks/       → TaskList.jsx, TaskItem.jsx, TaskForm.jsx, SearchBar.jsx
+├── context/         → React Context (AuthContext, TaskContext) para estado global
+├── hooks/           → hooks personalizados: useAuth, useTasks, useLocalStorage
+├── services/        → lógica que habla con el exterior
+│                     (authService.js, taskService.js, axios-instance)
+└── utils/           → funciones puras: formatDate, slugify, constants.js
 
 ## GitFlow
 - `main` → producción  
