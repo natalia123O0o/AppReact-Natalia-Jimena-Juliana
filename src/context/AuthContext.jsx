@@ -1,12 +1,22 @@
-import { createContext, useContext, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { createContext, useContext, useMemo, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
 
-  const navigate = useNavigate()
+  // Cargar usuario desde localStorage al iniciar
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser))
+      } catch (error) {
+        console.error('Error parsing stored user:', error)
+        localStorage.removeItem('user')
+      }
+    }
+  }, [])
 
   const login = (username, password) => {
     const ok =
@@ -30,26 +40,23 @@ export function AuthProvider({ children }) {
     }
 
     setUser(session)
-
-    navigate('/usuarios', { replace: true })
+    localStorage.setItem('user', JSON.stringify(session))
 
     return { ok: true }
   }
 
   const logout = () => {
     setUser(null)
-
-    navigate('/login', { replace: true })
+    localStorage.removeItem('user')
   }
 
   const value = useMemo(
-    () =>
-      ({
-        user,
-        isAuthenticated: !!user,
-        login,
-        logout,
-      }),
+    () => ({
+      user,
+      isAuthenticated: !!user,
+      login,
+      logout,
+    }),
     [user]
   )
 
