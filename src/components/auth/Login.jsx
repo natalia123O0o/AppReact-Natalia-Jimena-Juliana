@@ -2,11 +2,17 @@
 
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+
+  const from = location.state?.from?.pathname || "/usuarios";
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +28,12 @@ export default function Login() {
 
     const res = login(form.username, form.password);
 
-    if (!res?.ok) setError(res?.message || "No se pudo iniciar sesión");
+    if (res?.ok) {
+      // Redirigir a la página que intentaban acceder o a /usuarios
+      navigate(from, { replace: true });
+    } else {
+      setError(res?.message || "No se pudo iniciar sesión");
+    }
   };
 
   return (
@@ -77,7 +88,10 @@ export default function Login() {
           />
         </label>
 
-        <button className="w-full rounded-xl bg-[#2B124C] hover:bg-[#522B5B] text-[#FBE4D8] py-3 font-bold text-lg shadow-md transition transform hover:scale-105">
+        <button 
+          type="submit"
+          className="w-full rounded-xl bg-[#2B124C] hover:bg-[#522B5B] text-[#FBE4D8] py-3 font-bold text-lg shadow-md transition transform hover:scale-105"
+        >
           👉🏻 Ingresar 👈🏻
         </button>
       </form>
