@@ -1,5 +1,10 @@
 # 🗂️ Task Manager
 
+# 🤝👥 Equipo - 3147234
+-Juliana  Garcia
+-Jimena reyes
+-Natalia barbosa
+
 ## 🌟 Visión General
 Aplicación web para gestión colaborativa de tareas donde usuarios autenticados pueden crear, editar, eliminar y buscar tareas, con persistencia de datos y registro de historial de cambios.
 
@@ -9,6 +14,7 @@ Equipo de trabajo que necesita organizar tareas colaborativas con:
 - Registro de quién hace cada modificación  
 - Búsqueda rápida de tareas  
 - Persistencia de datos local y remota  
+
 
 ## 🎯 Objetivos Principales
 1. Autenticación segura con usuario/contraseña  
@@ -35,9 +41,9 @@ Equipo de trabajo que necesita organizar tareas colaborativas con:
 
 ## 📁 Estructura de Carpetas
 
-src/
+-src/
 │
-├── components/
+├── -components/
 │   ├── auth/
 │   │   ├── Login.jsx          # Formulario de autenticación
 │   │   └── PrivateRoute.jsx   # Ruta protegida
@@ -49,17 +55,17 @@ src/
 │       ├── TaskItem.jsx       # Item individual de tarea
 │       └── TaskList.jsx       # Lista de tareas con filtros
 │
-├── context/
+├── -context/
 │   ├── AuthContext.jsx        # Contexto de autenticación
 │   └── TaskContext.jsx        # Contexto de gestión de tareas
 │
-├── services/
+├── - services/
 │   └── localStorage.js        # Servicio de persistencia local
 │
-├── assets/
+├──  - assets/
 │   └── react.svg              # Assets estáticos
 │
-├── App.jsx                    # Componente principal
-├── App.css                    # Estilos globales
-├── index.css                  # Estilos base de Tailwind
-└── main.jsx                   # Punto de entrada de la aplicación
+├── - App.jsx                    # Componente principal
+├── - App.css                    # Estilos globales
+├──  -index.css                  # Estilos base de Tailwind
+└──  -main.jsx                   # Punto de entrada de la aplicación
