@@ -1,43 +1,65 @@
-# Task Manager App
+# 🗂️ Task Manager
 
-Stack: React + Vite + TailwindCSS + JSON-Server + LocalStorage  
-Equipo: Natalia, Juliana, Jimena (cambia por los nombres reales)
+## 🌟 Visión General
+Aplicación web para gestión colaborativa de tareas donde usuarios autenticados pueden crear, editar, eliminar y buscar tareas, con persistencia de datos y registro de historial de cambios.
 
-## Scripts
-- `npm run dev` – levanta el front en http://localhost:5173  
-- `npm run server` – levanta JSON-Server en http://localhost:4000  
-- `npm run dev:full` – ambos servidores simultáneamente  
-- `npm run seed` – pobla db.json con datos falsos  
-- `npm run build` – build de producción  
-- `npm run lint` – ESLint  
+## 👥 Contexto de Usuarios
+Equipo de trabajo que necesita organizar tareas colaborativas con:
+- Control de acceso por autenticación  
+- Registro de quién hace cada modificación  
+- Búsqueda rápida de tareas  
+- Persistencia de datos local y remota  
 
-## Estructura de carpetas
+## 🎯 Objetivos Principales
+1. Autenticación segura con usuario/contraseña  
+2. CRUD completo de tareas (Crear, Leer, Actualizar, Eliminar)  
+3. Sistema de búsqueda en tiempo real  
+4. Persistencia dual (localStorage + JSON Server)  
+5. Registro de cambios (creador y modificador)  
+6. Interfaz responsive y amigable  
+
+## 🏗️ Arquitectura Técnica
+- **Frontend:** React + Vite + Tailwind CSS  
+- **Persistencia:** localStorage (cliente) + JSON (servidor)  
+- **Estado Global:** React Context (sin hooks personalizados)  
+
+
+## 📋 Funcionalidades Clave
+- 🔐 Login/Logout con validación  
+- ✅ Lista de tareas con filtros  
+- ✏️ Crear/editar/eliminar tareas  
+- 🔍 Búsqueda en tiempo real  
+- 👥 Registro de usuario creador/modificador  
+- 💾 Persistencia automática  
+- 📱 Diseño responsive  
+
+## 📁 Estructura de Carpetas
+
 src/
-├── assets/          → imágenes, fuentes, íconos estáticos
-├── components/      → piezas de UI reusables, agrupadas por dominio
-│   ├── auth/        → Login.jsx, Register.jsx (solo presentación)
-│   ├── layout/      → Header.jsx, Footer.jsx, Layout.jsx (shell de la app)
-│   └── tasks/       → TaskList.jsx, TaskItem.jsx, TaskForm.jsx, SearchBar.jsx
-├── context/         → React Context (AuthContext, TaskContext) para estado global
-├── hooks/           → hooks personalizados: useAuth, useTasks, useLocalStorage
-├── services/        → lógica que habla con el exterior
-│                     (authService.js, taskService.js, axios-instance)
-└── utils/           → funciones puras: formatDate, slugify, constants.js
-
-## GitFlow
-- `main` → producción  
-- `develop` → integración  
-- `feature/&lt;nombre&gt;` → cada funcionalidad (feature/auth-flow, feature/task-crud, …)
-
-## Decisiones de diseño
-- Autenticación contra JSON-Server (/users).  
-- Estado global con Context + hooks personalizados.  
-- LocalStorage como cache; se sincroniza con JSON-Server cuando hay red.  
-- Auditoría: campos `createdBy` y `updatedBy` en cada tarea.
-
-## Cómo probar
-1. Clonar repo  
-2. `npm install`  
-3. `npm run seed`  
-4. `npm run dev:full`  
-5. Login: usuario **ana** contraseña **1234**
+│
+├── components/
+│   ├── auth/
+│   │   ├── Login.jsx          # Formulario de autenticación
+│   │   └── PrivateRoute.jsx   # Ruta protegida
+│   ├── layout/
+│   │   ├── Header.jsx         # Encabezado con navegación
+│   │   └── Layout.jsx         # Layout principal de la app
+│   └── tasks/
+│       ├── TaskForm.jsx       # Formulario de tareas
+│       ├── TaskItem.jsx       # Item individual de tarea
+│       └── TaskList.jsx       # Lista de tareas con filtros
+│
+├── context/
+│   ├── AuthContext.jsx        # Contexto de autenticación
+│   └── TaskContext.jsx        # Contexto de gestión de tareas
+│
+├── services/
+│   └── localStorage.js        # Servicio de persistencia local
+│
+├── assets/
+│   └── react.svg              # Assets estáticos
+│
+├── App.jsx                    # Componente principal
+├── App.css                    # Estilos globales
+├── index.css                  # Estilos base de Tailwind
+└── main.jsx                   # Punto de entrada de la aplicación
