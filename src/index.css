@@ -1,0 +1,174 @@
+/* Importar las bases de Tailwind CSS v4 */
+@import "tailwindcss";
+
+/* Importar fuentes de Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Definir variables CSS personalizadas */
+:root {
+  --color-primary: #190019;
+  --color-secondary: #2b124c;
+  --color-tertiary: #522b5b;
+  --color-accent: #85456c;
+  --color-light: #dfb6b2;
+  --color-background: #fbe4d8;
+}
+
+/* Aplicar la fuente a todo el documento */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-secondary); /* Cambiado a #2b124c */
+}
+
+/* Personalización de la barra de scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tertiary);
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Clases personalizadas */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+}
+
+.btn-secondary {
+  background-color: var(--color-light);
+  color: var(--color-tertiary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+  color: var(--color-secondary); /* Asegurar color de texto en cards */
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  color: var(--color-secondary); /* Color de texto en inputs */
+}
+
+.input-field:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: var(--color-accent);
+  border-color: transparent;
+}
+
+.input-field::placeholder {
+  color: #9ca3af; /* Color más claro para el placeholder */
+}
+
+/* Modal con fondo transparente opaco */
+.modal-overlay {
+  background-color: rgba(251, 228, 216, 0.9) !important; /* Fondo opaco con color de la app */
+  backdrop-filter: blur(4px); /* Efecto de desenfoque */
+}
+
+.modal-content {
+  background-color: white;
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Utilidades para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+  
+  .input-field {
+    background-color: var(--color-tertiary);
+    border-color: var(--color-tertiary);
+    color: white;
+  }
+}
+
+/* Transiciones suaves para modales */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
