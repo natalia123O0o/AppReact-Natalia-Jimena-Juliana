@@ -49,7 +49,7 @@ Funcionalidades Clave
 -📱 Interfaz responsive
 <p align="right"><a href="#readme-top">Volver arriba</a></p>
 
-💻 Empezando <a name="getting-started"></a>
+💻 Empezando 
 Para obtener una copia local y ejecutar el proyecto sigue los pasos:
 Prerrequisitos <a name="prerequisites"></a>
 
