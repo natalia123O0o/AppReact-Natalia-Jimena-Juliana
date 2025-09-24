@@ -38,8 +38,8 @@ Tech Stack <a name="tech-stack"></a>
 -Backend simulado: JSON Server
 -Estado global: Context API
 
-Funcionalidades Clave <a name="key-features"></a>
 
+Funcionalidades Clave 
 -🔐 Login/Logout con validación
 -✅ Lista de tareas con filtros
 -✏️ Crear, editar y eliminar tareas
