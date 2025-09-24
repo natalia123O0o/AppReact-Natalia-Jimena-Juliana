@@ -103,7 +103,7 @@ Natalia Barbosa
  Soporte multilenguaje
 
 
-🤝 Contribución <a name="contributing"></a>
+##🤝 Contribución <a name="contributing"></a>
 
 Contribuciones, problemas y solicitudes de características son bienvenidas.
 
@@ -116,6 +116,6 @@ Si te gusta este proyecto, considera darle una ⭐ en GitHub.
 
 Agradecemos al SENA y a nuestros instructores por el acompañamiento en este proyecto académico.
 
-📃 Licencia <a name="license"></a>
+##📃 Licencia <a name="license"></a>
 
 
