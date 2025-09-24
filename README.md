@@ -102,6 +102,7 @@ Natalia Barbosa
 
  Soporte multilenguaje
 
+
 🤝 Contribución <a name="contributing"></a>
 
 Contribuciones, problemas y solicitudes de características son bienvenidas.
@@ -109,6 +110,7 @@ Contribuciones, problemas y solicitudes de características son bienvenidas.
 ⭐ Apoyo <a name="support"></a>
 
 Si te gusta este proyecto, considera darle una ⭐ en GitHub.
+
 
 👏 Agradecimientos <a name="acknowledgements"></a>
 
