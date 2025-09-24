@@ -47,7 +47,7 @@ Funcionalidades Clave
 -👥 Registro de usuarios que crean y modifican tareas
 -💾 Persistencia automática (localStorage y servidor)
 -📱 Interfaz responsive
-<p align="right"><a href="#readme-top">Volver arriba</a></p>
+
 
 💻 Empezando 
 Para obtener una copia local y ejecutar el proyecto sigue los pasos:
