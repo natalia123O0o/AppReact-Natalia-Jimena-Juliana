@@ -57,4 +57,66 @@ Prerrequisitos <a name="prerequisites"></a>
 -Node.js
 -Git
 Un editor de código (VS Code recomendado)
-  
+
+
+Instalación <a name="install"></a>
+
+Clonar el repositorio
+
+Instalar dependencias con npm install
+
+Iniciar el servidor JSON con npm run server
+
+Ejecutar la aplicación con npm run dev
+
+Uso <a name="usage"></a>
+
+La aplicación permite gestionar tareas en equipo de forma colaborativa y segura.
+
+Pruebas <a name="run-tests"></a>
+
+Se podrán ejecutar pruebas unitarias en futuras versiones.
+
+Despliegue <a name="deployment"></a>
+
+Puede desplegarse en Vercel, Netlify o GitHub Pages.
+
+<p align="right"><a href="#readme-top">Volver arriba</a></p>
+👥 Autores <a name="authors"></a>
+
+Equipo 3147234 - SENA
+
+Juliana García
+
+Jimena Reyes
+
+Natalia Barbosa
+
+<p align="right"><a href="#readme-top">Volver arriba</a></p>
+🕹️ Futuras Mejoras <a name="future-features"></a>
+
+ Sistema de notificaciones
+
+ Integración con API externa
+
+ Estadísticas y métricas de uso
+
+ Soporte multilenguaje
+
+🤝 Contribución <a name="contributing"></a>
+
+Contribuciones, problemas y solicitudes de características son bienvenidas.
+
+⭐ Apoyo <a name="support"></a>
+
+Si te gusta este proyecto, considera darle una ⭐ en GitHub.
+
+👏 Agradecimientos <a name="acknowledgements"></a>
+
+Agradecemos al SENA y a nuestros instructores por el acompañamiento en este proyecto académico.
+
+📃 Licencia <a name="license"></a>
+
+Este proyecto es de carácter académico y no cuenta con licencia comercial.
+
+<p align="right"><a href="#readme-top">Volver arriba</a></p>
