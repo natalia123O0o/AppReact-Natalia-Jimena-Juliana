@@ -116,5 +116,4 @@ Agradecemos al SENA y a nuestros instructores por el acompañamiento en este pro
 
 📃 Licencia <a name="license"></a>
 
-Este proyecto es de carácter académico y no cuenta con licencia comercial.
 
