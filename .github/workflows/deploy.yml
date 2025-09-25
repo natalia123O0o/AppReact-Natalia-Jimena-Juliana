@@ -1,41 +1,53 @@
 name: 🚀 Deploy React App to GitHub Pages
-
+ 
 on:
+
   push:
+
     branches:
-      - develop  # ✅ Correcto - se activa en pushes a develop
 
+      - develop  # o "master" según tu rama
+ 
 jobs:
+
   build-and-deploy:
+
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # ✅ IMPORTANTE: Permiso para escribir
-      pages: write
-      id-token: write
-    
+ 
     steps:
+
       - name: ⬇️ Checkout
+
         uses: actions/checkout@v4
-
+ 
       - name: 📦 Instalar Node.js
+
         uses: actions/setup-node@v4
+
         with:
+
           node-version: 20
-          cache: 'npm'
-
+ 
       - name: 📥 Instalar dependencias
+
         run: npm install
-
+ 
       - name: 🧹 Lint con ESLint
+
         run: npm run lint
-
+ 
       - name: 🛠️ Build del proyecto
-        run: npm run build
 
+        run: npm run build
+ 
       - name: 📤 Deploy a GitHub Pages
+
         uses: peaceiris/actions-gh-pages@v4
+
         with:
+
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
           publish_dir: ./dist
-          # ✅ Opcional: Forzar deploy cada vez
-          force_orphan: true
+
+ 
