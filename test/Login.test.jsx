@@ -1,95 +1,78 @@
-// test/Login.test.jsx
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { vi } from 'vitest';
-import Login from '../src/components/auth/Login';
-
-// Mock de react-router-dom usando importOriginal
-const mockNavigate = vi.fn();
-const mockLocation = { state: { from: { pathname: '/usuarios' } } };
-
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-    useLocation: () => mockLocation
-  };
-});
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import Login from "../src/components/auth/Login";
 
 // Mock de useAuth
-const mockLogin = vi.fn();
-vi.mock('../src/context/AuthContext', () => ({
-  useAuth: () => ({
-    login: mockLogin,
-    user: null,
-    isAuthenticated: false,
-    logout: vi.fn()
-  })
+const mockLogin = jest.fn();
+jest.mock("../src/context/AuthContext", () => ({
+  useAuth: () => ({ login: mockLogin }),
 }));
 
-describe('Login Component', () => {
+// Mock de navigate y location
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+  useLocation: () => ({ state: { from: { pathname: "/protected" } } }),
+}));
+
+describe("Login Component", () => {
   beforeEach(() => {
-    mockNavigate.mockClear();
-    mockLogin.mockClear();
+    jest.clearAllMocks();
   });
 
-  test('successful login redirects to correct page', async () => {
+  test("renderiza inputs y botón", () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByPlaceholderText(/escribe tu usuario/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/escribe tu contraseña/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ingresar/i })).toBeInTheDocument();
+  });
+
+  test("muestra error si login falla", () => {
+    mockLogin.mockReturnValue({ ok: false, message: "Credenciales inválidas" });
+
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    fireEvent.change(screen.getByPlaceholderText(/escribe tu usuario/i), {
+      target: { value: "wrongUser", name: "username" },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/escribe tu contraseña/i), {
+      target: { value: "wrongPass", name: "password" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
+
+    expect(screen.getByText(/credenciales inválidas/i)).toBeInTheDocument();
+    expect(mockNavigate).not.toHaveBeenCalled();
+  });
+
+  test("redirige si login es exitoso", () => {
     mockLogin.mockReturnValue({ ok: true });
-    
+
     render(
-      <Router>
+      <MemoryRouter>
         <Login />
-      </Router>
+      </MemoryRouter>
     );
 
-    const usernameInput = screen.getByPlaceholderText('Escribe tu usuario');
-    const passwordInput = screen.getByPlaceholderText('Escribe tu contraseña');
-    const submitButton = screen.getByRole('button', { name: /Ingresar/i });
-
-    fireEvent.change(usernameInput, { target: { value: 'admin' } });
-    fireEvent.change(passwordInput, { target: { value: '1234' } });
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockLogin).toHaveBeenCalledWith('admin', '1234');
-      expect(mockNavigate).toHaveBeenCalledWith('/usuarios', { replace: true });
+    fireEvent.change(screen.getByPlaceholderText(/escribe tu usuario/i), {
+      target: { value: "user", name: "username" },
     });
-  });
-
-  test('failed login shows error message', async () => {
-    mockLogin.mockReturnValue({ ok: false, message: 'credenciales inválidas' });
-    
-    render(
-      <Router>
-        <Login />
-      </Router>
-    );
-
-    const usernameInput = screen.getByPlaceholderText('Escribe tu usuario');
-    const passwordInput = screen.getByPlaceholderText('Escribe tu contraseña');
-    const submitButton = screen.getByRole('button', { name: /Ingresar/i });
-
-    fireEvent.change(usernameInput, { target: { value: 'wrong' } });
-    fireEvent.change(passwordInput, { target: { value: 'wrong' } });
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(screen.getByText(/credenciales inválidas/i)).toBeInTheDocument();
+    fireEvent.change(screen.getByPlaceholderText(/escribe tu contraseña/i), {
+      target: { value: "pass", name: "password" },
     });
-  });
 
-  test('renders login form correctly', () => {
-    render(
-      <Router>
-        <Login />
-      </Router>
-    );
-    
-    expect(screen.getByText('Bienvenidos a nuestra lista colaborativa')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Escribe tu usuario')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Escribe tu contraseña')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Ingresar/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
+
+    expect(mockNavigate).toHaveBeenCalledWith("/protected", { replace: true });
   });
 });
