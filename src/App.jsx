@@ -1,10 +1,22 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { TaskProvider } from './context/TaskContext';
 import Layout from './components/layout/Layout';
 import TaskList from './components/tasks/TaskList';
 import './App.css';
 
 function App() {
+  const location = useLocation();
+  
+  // Verificar si estamos en la ruta correcta
+  if (!location.pathname.includes('/usuarios')) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-purple-900 text-xl">Redirigiendo...</div>
+      </div>
+    );
+  }
+
   return (
     <TaskProvider>
       <Layout>
@@ -15,7 +27,6 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 gap-6">
-            {/* Solo mostramos la lista de tareas, el formulario estará en un modal */}
             <div>
               <div className="card">
                 <div className="card-header">
